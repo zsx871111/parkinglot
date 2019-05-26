@@ -28,39 +28,37 @@ public class ParkingLots {
     }
 
     public Ticket receiveTheCar(Car car) throws Exception {
-        if(checkAvailability(car)){
+        if (checkAvailability(car)) {
             int parkingIndex = findAvailableParkingNumber();
-            if(parkingIndex == -1) {
+            if (parkingIndex == -1) {
                 this.isFull = true;
                 throw new Exception("full");
-            }
-            else {
-                this.multipleParking.get(parkingIndex).putIfAbsent(car.getPlateNumber(),car);
+            } else {
+                this.multipleParking.get(parkingIndex).putIfAbsent(car.getPlateNumber(), car);
                 return new Ticket(car.getPlateNumber(), parkingIndex);
             }
         }
         return null;
     }
 
-    public Car returnTheCar(Ticket ticket) throws Exception {
-        if(checkTicket(ticket)) {
-            Car car =  new Car(this.multipleParking
+    public Car returnTheCar(Ticket ticket) {
+        if (checkTicket(ticket)) {
+            Car car = new Car(this.multipleParking
                     .get(ticket.getParkingIndex())
                     .get(ticket.getPlateNumber())
                     .getPlateNumber());
             this.multipleParking.get(ticket.getParkingIndex()).remove(ticket.getPlateNumber());
             this.isFull = false;
             return car;
-        }
-        else {
+        } else {
             System.out.println("wrong ticket");
         }
         return null;
 
     }
 
-    private boolean checkTicket(Ticket ticket){
-        if(!Objects.isNull(ticket))
+    private boolean checkTicket(Ticket ticket) {
+        if (!Objects.isNull(ticket))
             return this.multipleParking.get(ticket.getParkingIndex()).keySet().stream()
                     .filter(Objects::nonNull)
                     .anyMatch(x -> x.equals(ticket.getPlateNumber()));
@@ -68,7 +66,7 @@ public class ParkingLots {
             return false;
     }
 
-    private int findAvailableParkingNumber(){
+    private int findAvailableParkingNumber() {
         List<Integer> freeParkingNumber = this.multipleParking.entrySet().stream()
                 .filter(x -> x.getValue().size() < this.length)
                 .map(k -> k.getKey())
@@ -92,4 +90,7 @@ public class ParkingLots {
         return isFull;
     }
 
+    public Map<Integer, Map<String, Car>> getMultipleParking() {
+        return multipleParking;
+    }
 }
