@@ -9,19 +9,19 @@ public class App {
         Car carFour = new Car("d");
         Car carFive = new Car("e");
 
-        Customer customerOne = new Customer(carOne, null, "customerOne");
-        Customer customerTwo = new Customer(carTwo, null, "customerTwo");
-        Customer customerThree = new Customer(carThree, null, "customerThree");
-        Customer customerFour = new Customer(carFour, null, "customerFour");
-        Customer customerFive = new Customer(carFive, null, "customerFive");
+        GradatedParkingBoy gradatedParkingBoyOne = new GradatedParkingBoy(carOne, null, "gradatedParkingBoyOne");
+        GradatedParkingBoy gradatedParkingBoyTwo = new GradatedParkingBoy(carTwo, null, "gradatedParkingBoyTwo");
+        GradatedParkingBoy gradatedParkingBoyThree = new GradatedParkingBoy(carThree, null, "gradatedParkingBoyThree");
+        GradatedParkingBoy gradatedParkingBoyFour = new GradatedParkingBoy(carFour, null, "gradatedParkingBoyFour");
+        GradatedParkingBoy gradatedParkingBoyFive = new GradatedParkingBoy(carFive, null, "gradatedParkingBoyFive");
 
-        customerOne.parkCar(parking);
-        customerTwo.parkCar(parking);
-        customerThree.parkCar(parking);
-        customerFour.parkCar(parking);
-        customerFive.parkCar(parking);
+        gradatedParkingBoyOne.parkCar(parking);
+        gradatedParkingBoyTwo.parkCar(parking);
+        gradatedParkingBoyThree.parkCar(parking);
+        gradatedParkingBoyFour.parkCar(parking);
+        gradatedParkingBoyFive.parkCar(parking);
 
-        customerOne.pickUpCar(parking);
-        customerFive.pickUpCar(parking);
+        gradatedParkingBoyOne.pickUpCar(parking);
+        gradatedParkingBoyFive.pickUpCar(parking);
     }
 }

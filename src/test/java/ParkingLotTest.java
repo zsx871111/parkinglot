@@ -19,7 +19,7 @@ public class ParkingLotTest {
     @Test
     public void given_receive_car_when_parking_is_availability_then_parkinglot_generate_ticket() throws Exception {
         Car carOne = new Car("a");
-        Assert.assertTrue(null != parking.receiveTheCar(carOne));
+        Assert.assertTrue(null != parking.receiveTheCar(carOne, 1));
 
     }
 
@@ -27,8 +27,8 @@ public class ParkingLotTest {
     public void given_receive_car_when_parking_is_availability_but_there_is_duplicated_platenumber_car_in_parking_then_parkinglot_will_not_generate_ticket() throws Exception {
         Car carOne = new Car("a");
         Car carTwo = new Car("a");
-        parking.receiveTheCar(carOne);
-        Assert.assertTrue(null == parking.receiveTheCar(carTwo));
+        parking.receiveTheCar(carOne, 1);
+        Assert.assertTrue(null == parking.receiveTheCar(carTwo, 1));
     }
 
     @Test(expected = Exception.class)
@@ -37,15 +37,15 @@ public class ParkingLotTest {
         Car carOne = new Car("a");
         Car carTwo = new Car("b");
         Car carThree = new Car("c");
-        parking.receiveTheCar(carOne);
-        parking.receiveTheCar(carTwo);
-        parking.receiveTheCar(carThree);
+        parking.receiveTheCar(carOne,1);
+        parking.receiveTheCar(carTwo,2);
+        parking.receiveTheCar(carThree,2);
     }
 
     @Test
     public void given_car_left_when_correct_ticket_then_parkinglot_generate_ticket_and_parking_lot_size_minus_one() throws Exception {
         Car carOne = new Car("a");
-        Ticket ticket = parking.receiveTheCar(carOne);
+        Ticket ticket = parking.receiveTheCar(carOne, 1);
         int afterParkingCapcity = this.parking.getMultipleParking().get(ticket.getParkingIndex()).keySet().size();
         parking.returnTheCar(ticket);
         int afterPickUpCarCapcity = this.parking.getMultipleParking().get(ticket.getParkingIndex()).keySet().size();

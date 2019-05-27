@@ -27,9 +27,9 @@ public class ParkingLots {
         }
     }
 
-    public Ticket receiveTheCar(Car car) throws Exception {
+    public Ticket receiveTheCar(Car car, int number) throws Exception {
         if (checkAvailability(car)) {
-            int parkingIndex = findAvailableParkingNumber();
+            int parkingIndex = number;
             if (parkingIndex == -1) {
                 this.isFull = true;
                 throw new Exception("full");
@@ -66,15 +66,6 @@ public class ParkingLots {
             return false;
     }
 
-    private int findAvailableParkingNumber() {
-        List<Integer> freeParkingNumber = this.multipleParking.entrySet().stream()
-                .filter(x -> x.getValue().size() < this.length)
-                .map(k -> k.getKey())
-                .collect(Collectors.toList());
-
-        return freeParkingNumber.size() > 0 ? freeParkingNumber.get(0) : -1;
-
-    }
 
     private boolean checkAvailability(Car car) {
         for (Map.Entry<Integer, Map<String, Car>> entry : this.multipleParking.entrySet()) {
