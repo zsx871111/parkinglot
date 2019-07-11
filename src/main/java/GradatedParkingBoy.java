@@ -17,7 +17,7 @@ public class GradatedParkingBoy implements Boy {
     public void parkCar(ParkingLots parking){
         System.out.println(this.name + " driving the car to parking...");
         try{
-            int parkingLocationIndex = findParkingLocaition(parking);
+            int parkingLocationIndex = findParkingLocation(parking);
             this.ticket = parking.receiveTheCar(car, parkingLocationIndex);
             if(Objects.isNull(ticket)){
                 System.out.println(this.name + " driving the car to parking... fail");
@@ -32,15 +32,17 @@ public class GradatedParkingBoy implements Boy {
     }
 
     @Override
-    public void pickUpCar(ParkingLots parking) {
+    public void pickUpCar(ParkingLots parking){
         Car car = parking.returnTheCar(ticket);
         this.car = car;
-        if(!Objects.isNull(car))
+        if(!Objects.isNull(car)) {
+            this.ticket = null;
             System.out.println("GradatedParkingBoy is picking up the car... with plate number ->" + car.getPlateNumber());
+        }
     }
 
     @Override
-    public int findParkingLocaition(ParkingLots parking) {
+    public int findParkingLocation(ParkingLots parking){
         List<Integer> freeParkingNumber = parking.getMultipleParking().entrySet().stream()
                 .filter(x -> x.getValue().size() < parking.getMultipleParking().keySet().size())
                 .map(k -> k.getKey())

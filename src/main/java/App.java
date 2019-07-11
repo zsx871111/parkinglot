@@ -2,7 +2,7 @@ public class App {
 
     public static void main(String [] args) throws Exception {
 
-        ParkingLots parking = new ParkingLots(2,1);
+        ParkingLots parking = new ParkingLots(2,2);
         Car carOne = new Car("a");
         Car carTwo = new Car("b");
         Car carThree = new Car("c");

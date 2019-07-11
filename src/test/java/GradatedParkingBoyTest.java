@@ -38,12 +38,19 @@ public class GradatedParkingBoyTest {
         GradatedParkingBoy gradatedParkingBoyOne = new GradatedParkingBoy(carOne, null, "gradatedParkingBoyOne");
         gradatedParkingBoyOne.parkCar(parking);
         Car carTwo = new Car("b");
-        GradatedParkingBoy gradatedParkingBoyTwo = new GradatedParkingBoy(carTwo, null, "gradatedParkingBoyTwo");
-        gradatedParkingBoyTwo.parkCar(parking);
+        gradatedParkingBoyOne = new GradatedParkingBoy(carTwo, null, "gradatedParkingBoyOne");
+        gradatedParkingBoyOne.parkCar(parking);
         Car carThree = new Car("c");
-        GradatedParkingBoy gradatedParkingBoyThree = new GradatedParkingBoy(carThree, null, "gradatedParkingBoyThree");
+        gradatedParkingBoyOne = new GradatedParkingBoy(carThree, null, "gradatedParkingBoyOne");
+        gradatedParkingBoyOne.parkCar(parking);
+        Car carFour = new Car("d");
+        gradatedParkingBoyOne = new GradatedParkingBoy(carFour, null, "gradatedParkingBoyOne");
+        gradatedParkingBoyOne.parkCar(parking);
+        Car carFive = new Car("e");
+        gradatedParkingBoyOne = new GradatedParkingBoy(carFive, null, "gradatedParkingBoyOne");
+        gradatedParkingBoyOne.parkCar(parking);
 
-        gradatedParkingBoyThree.parkCar(parking);
+
         Assert.assertTrue(parking.isFull());
 
     }
